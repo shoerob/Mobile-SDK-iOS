@@ -41,7 +41,7 @@ const static NSTimeInterval REFRESH_INTERVAL = 1.0;
 @implementation VideoPreviewerSDKAdapter
 
 +(instancetype)adapterWithDefaultSettings {
-    return [self adapterWithVideoPreviewer:[VideoPreviewer instance] andVideoFeed:[DJISDKManager videoFeeder].primaryVideoFeed];
+    return [self adapterWithVideoPreviewer:[VideoPreviewer instance] andVideoFeed:[DJISDKManager videoFeeder].secondaryVideoFeed];
 }
 
 +(instancetype)adapterWithForLightbridge2 {

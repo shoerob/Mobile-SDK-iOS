@@ -283,4 +283,10 @@
 	}
 }
 
+- (void)camera:(DJICamera *)camera didGenerateNewMediaFile:(DJIMediaFile *)newMedia {
+    NSLog(@"MEDIA FILE GENERATED!!");
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"MEDIA" message:@"MEDIA FILE GENERATED" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+}
+
 @end

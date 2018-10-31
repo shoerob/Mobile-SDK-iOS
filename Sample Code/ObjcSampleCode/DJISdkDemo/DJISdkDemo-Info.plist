@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>DJISDKAppKey</key>
-	<string>ENTER_DJI_API_SDK_KEY_HERE</string>
+	<string>Please enter your App Key here.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -35,6 +35,10 @@
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Use Microphone</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Save Image to Photo Library</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

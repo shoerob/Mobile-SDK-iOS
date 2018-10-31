@@ -28,6 +28,8 @@
 #import "FollowMeMissionViewController.h"
 #import "TimelineMissionViewController.h"
 #import "PanoramaMissionViewController.h"
+#import "PayloadViewController.h"
+#import "AccessoryAggregationViewController.h"
 
 #import "KeyedInterfaceViewController.h"
 
@@ -93,6 +95,12 @@
     }
     if ([DemoComponentHelper fetchHandheldController]) {
         [components addObject:[DemoSettingItem itemWithName:[DJIHandheldControllerComponent capitalizedString] andClass:[[self componentVCDict] objectForKey:DJIHandheldControllerComponent]]];
+    }
+    if ([DemoComponentHelper fetchPayload]) {
+        [components addObject:[DemoSettingItem itemWithName:[DJIPayloadComponent capitalizedString] andClass:[PayloadViewController class]]];
+    }
+    if ([DemoComponentHelper fetchAccessoryAggregation]) {
+        [components addObject:[DemoSettingItem itemWithName:[DJIAccessoryAggregationComponent capitalizedString] andClass:[AccessoryAggregationViewController class]]];
     }
 
     [self.items addObject:components];

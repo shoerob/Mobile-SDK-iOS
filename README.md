@@ -20,7 +20,7 @@ sudo gem install cocoapods
 
 The process may take a long time, please wait. For further installation instructions, please check [this guide](https://guides.cocoapods.org/using/getting-started.html#getting-started).
 
-**2.** Install SDK with CocoaPods in the Project
+**2.** Install SDK and DJIWidget with CocoaPods in the Project
 
 Run the following command in the **ObjcSampleCode** and **SwiftSampleCode** paths:
 
@@ -33,7 +33,8 @@ If you install it successfully, you should get the messages similar to the follo
 ~~~
 Analyzing dependencies
 Downloading dependencies
-Installing DJI-SDK-iOS (4.6.1)
+Installing DJI-SDK-iOS (4.8)
+Installing DJIWidget (1.2)
 Generating Pods project
 Integrating client project
 
@@ -58,8 +59,15 @@ For the Objective-C sample app, the key value **DJISDKAppKey** should to be adde
 For the Swift sample app, the DJISDKAppKey is present in the Info.plist - developers just need to add their unique key.
 In both cases developers will still need to update the [Bundle Identifier](http://developer.dji.com/user/mobile-sdk/ios-configuration/) .
 
-
 One of DJI's aircraft or handheld cameras will be required to run the sample application.  
+
+### DJIWidget Integration
+
+Starting from DJI iOS SDK 4.7, we have replaced the **VideoPreviewer** with **DJIWidget** for video decoding. Please add the following line to your Podfile to install it to your Xcode project:
+
+~~~
+pod 'DJIWidget', '~> 1.2'
+~~~
 
 ## Development Workflow 
 
@@ -89,7 +97,6 @@ Several iOS tutorials are provided as examples on how to use different features 
 - [Using the Bridge App](https://developer.dji.com/mobile-sdk/documentation/ios-tutorials/BridgeAppDemo.html)
 - [Using the Remote Logger](https://developer.dji.com/mobile-sdk/documentation/ios-tutorials/RemoteLoggerDemo.html)
 
-
 ## Learn More about DJI Products and the Mobile SDK
 
 Please visit [DJI Mobile SDK Documentation](https://developer.dji.com/mobile-sdk/documentation/introduction/index.html) for more details.
@@ -114,17 +121,10 @@ A detailed introduction for missions is [here](./docs/README-Mission.md).
 
 [**iOS SDK API Documentation**](http://developer.dji.com/api-reference/ios-api/index.html)
 
-## FFmpeg Customization
-
-We have forked the original FFmpeg and added customized features to provide more video frame information including the frame's width and height, frame rate number, etc. These features will help to implement video hardware decoding. 
-
-The SDK Sample Code is dynamically linked with unmodified libraries of <a href=http://ffmpeg.org>FFmpeg</a> licensed under the <a href=http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html>LGPLv2.1</a>. The source code of these FFmpeg libraries, the compilation instructions, and the LGPL v2.1 license are provided in [Github](https://github.com/dji-sdk/FFmpeg).
-
 ## Support
 
 You can get support from DJI with the following methods:
 
-- [**DJI Forum**](http://forum.dev.dji.com/en)
 - Post questions in [**Stackoverflow**](http://stackoverflow.com) using [**dji-sdk**](http://stackoverflow.com/questions/tagged/dji-sdk) tag
 - dev@dji.com
 

@@ -6,10 +6,10 @@
 //
 
 #import "VideoPreviewerSDKAdapter+Lightbridge2.h"
-#import "DemoUtilityMacro.h"
-#import <DJISDK/DJISDK.h>
-#import <VideoPreviewer/VideoPreviewer.h>
+#import "DemoUtility.h"
 #import "DemoComponentHelper.h"
+#import <DJISDK/DJISDK.h>
+#import <DJIWidget/DJIVideoPreviewer.h>
 
 #define IS_FLOAT_EQUAL(a, b) (fabs(a - b) < 0.0005)
 
@@ -17,8 +17,8 @@
 
 -(void)startLightbridgeListen {
     DJIAirLinkKey *extEnabledKey = [DJIAirLinkKey keyWithIndex:0
-                                                    subElement:DJIAirLinkLightbridgeLinkSubComponent
-                                                      subIndex:0
+												  subComponent:DJIAirLinkLightbridgeLinkSubComponent
+											 subComponentIndex:0
                                                       andParam:DJILightbridgeLinkParamEXTVideoInputPortEnabled];
     WeakRef(target);
     DJIKeyedValue *extEnabled = [DemoComponentHelper startListeningAndGetValueForChangesOnKey:extEnabledKey
@@ -32,8 +32,8 @@
     self.isEXTPortEnabled = extEnabled.value;
 
     DJIAirLinkKey *LBPercentKey = [DJIAirLinkKey keyWithIndex:0
-                                                   subElement:DJIAirLinkLightbridgeLinkSubComponent
-                                                     subIndex:0
+												 subComponent:DJIAirLinkLightbridgeLinkSubComponent
+											subComponentIndex:0
                                                      andParam:DJILightbridgeLinkParamBandwidthAllocationForLBVideoInputPort];
     DJIKeyedValue *LBPercent = [DemoComponentHelper startListeningAndGetValueForChangesOnKey:LBPercentKey
                                                                           withListener:self
@@ -46,8 +46,8 @@
     self.LBEXTPercent = LBPercent.value;
 
     DJIAirLinkKey *HDMIPercentKey = [DJIAirLinkKey keyWithIndex:0
-                                                     subElement:DJIAirLinkLightbridgeLinkSubComponent
-                                                       subIndex:0
+												   subComponent:DJIAirLinkLightbridgeLinkSubComponent
+											  subComponentIndex:0
                                                        andParam:DJILightbridgeLinkParamBandwidthAllocationForHDMIVideoInputPort];
     DJIKeyedValue *HDMIPercent = [DemoComponentHelper startListeningAndGetValueForChangesOnKey:HDMIPercentKey
                                                                             withListener:self

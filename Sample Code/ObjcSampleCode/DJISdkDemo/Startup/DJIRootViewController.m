@@ -152,6 +152,23 @@
                 [target updateFirmwareVersion:nil];
             }
         }];
+        
+        
+        // After having called this method, when turning off the Mavic 2 remote controller, the application will sometimes crash.
+        // If you comment this block of code out, the application doesn't appear to crash anymore. The call stack in the debugger
+        // doesn't provide much information, but it does appear to show that there was a bad access when trying to call a callback
+        // somewhere. I've traced the crash all the way to having called the following code. If I comment this block of code out,
+        // the crash no longer seems to occur.
+        //
+        // Steps to Reproduce Crash:
+        // 1. Turn on the Mavic 2, and its remote, and plug it into the iPad.
+        // 2. Deploy the application to the iPad with the Xcode debugger attached.
+        // 3. Right after the application has launched, and the remote is connected, turn off the remote using its power button.
+        // 4. Repeat the above steps until the application crashes. Sometimes it takes a while to reproduce.
+        [((DJIAircraft *) newConnectedProduct).remoteController getModeWithCompletion:^(DJIRCMode mode, NSError * _Nullable error) {
+            NSLog(@"Hello World!");
+        }];
+        
     }else {
         _productConnectionStatus.text = NSLocalizedString(@"Status: Product Not Connected", @"");
         _productModel.text = NSLocalizedString(@"Model: Unknown", @"");

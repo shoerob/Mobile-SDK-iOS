@@ -30,8 +30,10 @@
 #import "PanoramaMissionViewController.h"
 #import "PayloadViewController.h"
 #import "AccessoryAggregationViewController.h"
+#import "UpgradeManagerViewController.h"
 
 #import "KeyedInterfaceViewController.h"
+#import "VideoLiveStreamingViewController.h"
 
 @interface ComponentSelectionViewController () <DJIBaseProductDelegate>
 
@@ -67,6 +69,7 @@
     }
     
     [sdk40Interfaces addObject:[DemoSettingItem itemWithName:@"Keyed Interface" andClass:[KeyedInterfaceViewController class]]];
+	[sdk40Interfaces addObject:[DemoSettingItem itemWithName:@"Live Streaming" andClass:[VideoLiveStreamingViewController class]]];
     
     [self.items addObject:sdk40Interfaces];
 }
@@ -102,7 +105,10 @@
     if ([DemoComponentHelper fetchAccessoryAggregation]) {
         [components addObject:[DemoSettingItem itemWithName:[DJIAccessoryAggregationComponent capitalizedString] andClass:[AccessoryAggregationViewController class]]];
     }
-
+    if ([DJISDKManager upgradeManager]) {
+        [components addObject:[DemoSettingItem itemWithName:[UpgradeManagerKey capitalizedString] andClass:[UpgradeManagerViewController class]]];
+    }
+    
     [self.items addObject:components];
 }
 

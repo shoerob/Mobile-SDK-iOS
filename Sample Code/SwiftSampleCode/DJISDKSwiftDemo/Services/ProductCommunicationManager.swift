@@ -381,8 +381,9 @@ class ProductCommunicationManager: NSObject {
     //   DEBUG -- enableLDM Result: nil
     //   DEBUG -- DJILDMManagerEnabledChanged -- isSupported: true -- isEnabled: true
     //
-    //   Conclusion(s): SUCCESS. Works predictably, and consistently.
+    //   Conclusion(s): Enabled. Works predictably, and consistently.
     //                  HOWEVER, does not enable before app registration, and requires a drone to be plugged in.
+    //                  FAILURE - Charles Proxy still detects data emitted to DJI services when LDM is enabled.
     //
     func AttemptToUseLDM_6() {
         self.attemptToEnableLDMWithAsyncAfterProductConnects = true

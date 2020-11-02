@@ -25,9 +25,43 @@ class ProductCommunicationManager: NSObject {
             return
         }
         
-        DJISDKManager.registerApp(with: self)
+        self.AttemptToUseLDM_1()
     }
     
+    // Attempt #1
+    //   This code attempts to enable LDM as described in the DJI documentation.
+    //
+    //   According to the DJI SDK documentation for:
+    //   - (void)enableLDMWithCompletion:(void (^_Nonnull)(NSError *_Nullable error))completion;
+    //   /**
+    //   *  Enables LDM. Can only be enabled if `isLDMSupported` is `YES`. Please call
+    //   *  `getIsLDMSupportedWithCompletion` methods firstly.  Call this method before
+    //   *  calling the other methods of SDK (including `registerAppWithDelegate`) to
+    //   *  restrict the internet access  of SDK (SDK registration is unrestricted).
+    //   */
+    //
+    // Resulting Output:
+    // DEBUG -- getIsLDMSupported: false, The drone is not connect(code:-12000)
+    //
+    // Conclusion(s): Does NOT work. The observer for DJILDMManagerSupportedChanged is NEVER called. registerApp NEVER occurs.
+    //
+    func AttemptToUseLDM_1() {
+        // MARK: LDM Attempt #1
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.DJILDMManagerSupportedChanged, object: nil, queue: nil) { [unowned self] (notification) in
+            let isSupported = DJISDKManager.ldmManager().isLDMSupported
+            let isEnabled = DJISDKManager.ldmManager().isLDMEnabled
+            print("DJILDMManagerSupportedChanged -- isSupported: \(isSupported) -- isEnabled: \(isEnabled)")
+            
+            if isSupported == true {
+                DJISDKManager.registerApp(with: self)
+            }
+        }
+
+        DJISDKManager.ldmManager().getIsLDMSupported { (isSupported, error) in
+            print("DEBUG -- getIsLDMSupported: \(isSupported), \(error?.localizedDescription ?? "nil")")
+        }
+    }
 }
 
 extension ProductCommunicationManager : DJISDKManagerDelegate {
